@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+    <h1>Posts</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ post.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ post.titre }}</td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ post.resume }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ post.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ post.user }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ post.image }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ post.dateCreation ? post.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="liste">
+        <h3>Liste des commentaires</h3>
+
+        {% for comment in comments %}
+            Posté par <i>{{comment.user}}</i> le {{comment.createdAt|date('d-m-Y')}} à {{ comment.createdAt|date('H:i:s') }}
+            <p>
+                {{comment.contenu}}
+            </p>
+        {% endfor %}
+    </div>
+    <hr>
+
+    {# si la condition n'est pas remplie, le formulaire d'ajout de commentaire ne sera ni afficher ni exécuter #}
+    {% if app.user %} 
+    <div class="form">
+        {{ include('commentaire/_form.html.twig') }}
+    </div>
+    {% else %}
+        Vous devez vous connecter pour ajouter un commentaire 
+    {% endif %}
+
+    <a href="{{ path('app_posts_index') }}">back to list</a>
+
+    <a href="{{ path('app_posts_edit', {'id': post.id}) }}">edit</a>
+
+    {{ include('posts/_delete_form.html.twig') }}
+{% endblock %}

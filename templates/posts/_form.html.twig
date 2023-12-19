@@ -1,0 +1,24 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'} }) }}
+    {# {{ form_widget(form) }} #}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.titre, {'attr': {'class':'form-control', 'placeholder':"Titre"} })}}
+            </div>
+            <div class="col-md-10">
+                {{ form_row(form.resume, {'attr': {'class':'form-control', 'placeholder':"Résumé"} })}}
+            </div>
+            <div class="col-md-12">
+                {{ form_row(form.contenu, {'attr': {'class':'form-control', 'placeholder':"Contenu du billet"} })}}
+            </div>
+            {# <div class="col-md-6">
+                {{ form_row(form.user, {'attr': {'class':'form-control', 'placeholder':"Auteur"} })}}
+            </div> #}
+            <div class="col-md-6">
+                {{ form_row(form.image, {'attr': {'class':'form-control', 'placeholder':"URL de l'illustration"} })}}
+            </div>
+            <button class="btn btn-primary">{{ button_label|default('Je poste mon article') }}</button>
+        </div>
+    </div>
+{{ form_end(form) }}

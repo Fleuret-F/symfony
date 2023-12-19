@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        Je suis le contenu depuis index.html.twig
+    </div>
+
+    {# {% set test = "Je suis- TEST" %}                      déclaration #} 
+    {# {{ test }}                                            affichage #} 
+
+    <img src="{{ asset('faluche2.jpg') }}" alt="" width="760">
+    <img src="{{ asset('faluche.jpg') }}" alt="" width="500">
+{% endblock %}
